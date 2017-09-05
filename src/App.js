@@ -124,6 +124,19 @@ class App extends Component {
           </code>
         </p>
         <button
+          onClick={() => {
+            return window.zeroExInstance.getAvailableAddressesAsync()
+            .then(([userWallet]) => {
+              return window.zeroExInstance.etherToken.depositAsync(
+                new BigNumber(window.web3.toWei(.05, 'ether')),
+                userWallet
+              )
+            }).catch(console.log)
+          }}>
+        Check Weth Contract
+        </button>
+
+        <button
           onClick={fillOrder}>
         Fill Order
         </button>
